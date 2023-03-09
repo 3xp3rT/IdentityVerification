@@ -1,0 +1,45 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="row">
+ 
+    <div class="col-md-4 offset-4">
+        @if (!String.IsNullOrWhiteSpace(Model.htmlData))
+        {
+            <div class="text-center mb-4">
+                <h6><i class="fa-solid fa-badge-check"></i> Your NID are vrified!</h6>
+            <small>We found bellow information about you. Thanks for being with us</small>
+            </div>
+            @Html.Raw(Model.htmlData)
+        }
+        else
+        {
+            <div class="text-center">
+                <h6>Validate NID Information</h6>
+            </div>
+            <form method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label asp-for="@Model.User.Mobile" class="form-label">মোবাইল নম্বর <span class="star">*</span></label>
+                    <input type="text" asp-for="@Model.User.Mobile" class="form-control" placeholder="মোবাইল নম্বর">
+                    @* <small class="form-text">আপনার মোবাইল নাম্বার লিখুন।</small>*@
+                </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.User.Nid" class="form-label">জাতীয় পরিচয় পত্র<span class="star">*</span></label>
+                    <input type="text" asp-for="@Model.User.Nid" class="form-control" placeholder="জাতীয় পরিচয় পত্র">
+                    @*  <small class="form-text">আপনার NID নাম্বার লিখুন।</small>*@
+                </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.User.Dob">জন্ম তারিখ <span class="star">*</span></label>
+                    <input type="date" asp-for="@Model.User.Dob" class="form-control" placeholder="জন্ম তারিখ">
+                    @*  <small class="form-text">আপনার জন্ম তারিখ লিখুন।</small>*@
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Submit</button>
+
+            </form>
+        }
+      
+    </div>
+</div>
